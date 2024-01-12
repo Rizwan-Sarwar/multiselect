@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="css/mobiscroll.javascript.min.css" rel="stylesheet" />
+    <script src="js/mobiscroll.javascript.min.js"></script>
+
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mobiscroll@3.0.0-beta6/css/mobiscroll.android-holo-light.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/mobiscroll@3.0.0-beta6/js/mobiscroll.scroller.min.js"></script> -->
+
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mobiscroll-javascript@4.0.0/dist/css/mobiscroll.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/mobiscroll-javascript@4.0.0/dist/js/mobiscroll.javascript.min.js"></script> -->
+    <style>
+        .rs__multi__select__value__show {
+            width: 400px;
+            height: 400px;
+            border: 1px solid lightgray;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 5px;
+            margin: 20px 0px 0px;
+        }
+
+        .rs__multi__select__value__show span {
+            display: block;
+            padding: 6px;
+            background-color: #dedede;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="rs__field">
+        <label>
+            <!-- Multi-select -->
+            <input mbsc-input id="demo-multiple-select-input" placeholder="Please select..." data-dropdown="true" data-input-style="outline" data-label-style="stacked" data-tags="true" />
+        </label>
+        <select id="demo-multiple-select" multiple>
+            <option value="1">Books</option>
+            <option value="2">Movies & Music & Games</option>
+            <option value="3">Electronics & Computers</option>
+            <option value="4">Home & Garden & Tools</option>
+            <option value="5">Health & Beauty</option>
+            <option value="6">Toys & Kids & Baby</option>
+            <option value="7">Clothing & Jewelry</option>
+            <option value="8">Sports & Outdoors</option>
+        </select>
+    </div>
+    <div class="rs__btn">
+        <button onclick="getValues()">get selected value</button>
+    </div>
+    <div class="rs__multi__select__value__show"></div>
+      
+    <script>
+        mobiscroll.setOptions({
+            theme: 'ios',
+            themeVariant: 'light'
+        });
+
+        mobiscroll.select('#demo-multiple-select', {
+            inputElement: document.getElementById('demo-multiple-select-input'),
+        });
+        const getValues = () => {
+            let multiSelectShow = document.querySelector(".rs__multi__select__value__show");
+            multiSelectShow.innerHTML = "";
+            let multiSelect = document.querySelector("#demo-multiple-select-input");
+            let getArray = multiSelect.value.split(",");
+            for(var i = 0; i < getArray.length; i++) {
+                let newElement = document.createElement("span");
+                newElement.textContent = getArray[i];
+                multiSelectShow.appendChild(newElement);
+            }
+        }
+    </script>
+</body>
+</html>
